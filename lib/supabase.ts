@@ -19,12 +19,17 @@ import { createClient } from "@supabase/supabase-js";
 // ============================================================================
 
 // ---- 1) DropsEx project (auth: businesses + sessions) ----
-const dropsexUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+const dropsexUrl =
+  process.env.SUPABASE_URL ||
+  process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  process.env.NEXT_PUB_SUPABASE_URL ||
+  process.env.NEXT_SUPABASE_URL ||
+  process.env._SUPABASE_URL;
 const dropsexServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!dropsexUrl || !dropsexServiceKey) {
   throw new Error(
-    "DropsEx Supabase is not configured: set SUPABASE_URL (or NEXT_PUBLIC_SUPABASE_URL) and SUPABASE_SERVICE_ROLE_KEY.",
+    "DropsEx Supabase is not configured: provide a Supabase URL and SUPABASE_SERVICE_ROLE_KEY.",
   );
 }
 

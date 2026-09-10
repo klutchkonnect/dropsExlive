@@ -110,7 +110,7 @@ function historyFromRow(row: any): { status: DeliveryStatus; timestamp: string; 
     { col: "dispatched_at", status: "in_transit" },
     { col: "delivered_at", status: "delivered" },
   ];
-  const history = steps
+  const history: { status: DeliveryStatus; timestamp: string; note?: string }[] = steps
     .filter((s) => row[s.col])
     .map((s) => ({ status: s.status, timestamp: row[s.col] as string }));
   if (row.status === "cancelled") {
